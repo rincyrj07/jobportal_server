@@ -1,8 +1,8 @@
 const express = require("express")
-const router = express.Router()
+
 const { updateRoleController, userListController } = require("../controllers/adminCompanyController")
 const { adminOnlyMiddleware } = require("../middlewares/authenticationMiddleware")
-
+const router = express.Router()
 
 
 

@@ -1,9 +1,11 @@
 const express = require("express")
 const router = express.Router()
-const { createCompanyController } = require("../controllers/companyController")
+
+const { createCompanyController, companyListController } = require("../controllers/companyController")
 const { companyOnlyMiddleware } = require("../middlewares/authenticationMiddleware")
 
 
-router.post( "/company", companyOnlyMiddleware, createCompanyController)
+router.post( "/company",  companyOnlyMiddleware, createCompanyController)
+router.get("/employer" , companyOnlyMiddleware, companyListController)
 
 module.exports = router

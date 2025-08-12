@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+
 require('dotenv').config()
 
 const userRouter = require("./src/routes/userRouter")
@@ -23,15 +24,15 @@ console.log(port);
 app.use(cookieParser());
 app.use(express.json());
 app.use(async (req, res, next) => {
-    // try {
+    try {
         const token = req.headers.authorization.split(" ")[1]
         var decoded = jwt.verify(token, JWT_SECRET);
         console.log(decoded);
         const user =await UserModel.findOne({email: decoded.email})
         req.user = user
-    // } catch (err) {
-    //     console.log("Not authorized");
-    // }
+    } catch (err) {
+        console.log("Not authorized");
+    }
 
     next()
 })
