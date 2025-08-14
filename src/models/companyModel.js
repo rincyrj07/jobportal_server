@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const companySchema = new mongoose.Schema({
     
     
-    // _id: {
-    //     type: String,
-    //     required: [true, "ID is required"],  
-    // },
+    _id: {
+        type: String,
+        required: [true, "ID is required"],  
+    },
     //  name: {
     //     type: String,
     //     required: [true, "Name is required"], 

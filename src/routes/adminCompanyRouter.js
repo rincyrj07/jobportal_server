@@ -1,6 +1,6 @@
 const express = require("express")
 
-const { updateRoleController, userListController } = require("../controllers/adminCompanyController")
+const { updateRoleController, userListController, toggleUserStatus } = require("../controllers/adminCompanyController")
 const { adminOnlyMiddleware } = require("../middlewares/authenticationMiddleware")
 const router = express.Router()
 
@@ -8,4 +8,5 @@ const router = express.Router()
 
 router.get("/user-list", adminOnlyMiddleware, userListController)
 router.put("/update-role", adminOnlyMiddleware, updateRoleController)
+router.get("/update-status", adminOnlyMiddleware, toggleUserStatus ) 
 module.exports = router

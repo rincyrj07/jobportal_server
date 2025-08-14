@@ -6,6 +6,6 @@ const { companyOnlyMiddleware } = require("../middlewares/authenticationMiddlewa
 
 
 router.post( "/company",  companyOnlyMiddleware, createCompanyController)
-router.get("/employer" , companyOnlyMiddleware, companyListController)
+router.get("/company" , companyOnlyMiddleware, companyListController)
 
 module.exports = router

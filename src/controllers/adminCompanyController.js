@@ -15,9 +15,7 @@ const userListController = async (req, res) => {
     } catch (err) {
         res.status(500).json({ "message": "Something went wrong in the server. Please try again" })
     }
-
 }
-
 
 const updateRoleController = async (req, res) => {
     try {
@@ -37,8 +35,37 @@ const updateRoleController = async (req, res) => {
         else {
             res.status(500).json({ message: "Something went wrong in the server. Please try after some time" })
         }
-
     }
-
 }
-module.exports = { updateRoleController, userListController }
+
+const toggleUserStatus = async (req, res) => {
+    const user = await UserModel.findById(req.query.userID)
+    if(user.status === "active"){
+        user.status = "inactive"
+    }else{
+        user.status = "active"
+    }
+    await user.save()
+    res.json({message: "User Status updated successfully" , user})
+}
+
+//----------------------------------------------------------------------------
+// const toggleUserStatus = async (req, res) => {
+//     try {
+        
+//         const user = await UserModel.findById(req.query.userID);
+//         if (!user) {
+//             return res.status(404).json({ message: "User not found." });
+//         }
+//         user.status = user.status === "active" ? "inactive" : "active";
+//         await user.save();
+//         res.status(200).json({ message: "User status updated successfully", user });
+//     } catch (err) {
+//         console.error(error); // Log the error for debugging.
+//         res.status(500).json({ message: "An error occurred", error: error.message });
+//     }
+// };
+//-------------------------------------------------------------------------------
+
+
+module.exports = { updateRoleController, userListController , toggleUserStatus }
