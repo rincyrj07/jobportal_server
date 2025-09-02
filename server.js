@@ -2,11 +2,20 @@ const express = require("express")
 const app = express()
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+var cors = require('cors')
 
 require('dotenv').config()
+console.log(process.env.CLIENT_URL);
+
+var corsOptions = {
+  origin: process.env.CLIENT_URL,
+  optionsSuccessStatus: 200 ,
+  credentials: true
+}
+app.use(cors(corsOptions))
 
 const userRouter = require("./src/routes/userRouter")
-const adminCompanyRouter = require("./src/routes/adminCompanyRouter")
+const adminRouter = require("./src/routes/adminRouter")
 const companyRouter = require("./src/routes/companyRouter");
 const jobseekerRouter = require("./src/routes/jobseekerRouter");
 const { getUserMiddleware } = require("./src/middlewares/authenticationMiddleware");
@@ -33,7 +42,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/user", userRouter)
-app.use("/api/admin", adminCompanyRouter)
+app.use("/api/admin", adminRouter)
 app.use("/api/employer", companyRouter)
 app.use("/api/jobseeker", jobseekerRouter)
 

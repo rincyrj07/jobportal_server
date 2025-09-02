@@ -1,18 +1,11 @@
 
-//     `
-// dob
-// gender
-// qualification
-// designation
-// experience
-// `
+
 const mongoose = require('mongoose')
 
-const professionaldetailsSchema = new mongoose.Schema({
+const professionalDetailsSchema = new mongoose.Schema({
     dob: {
         type: Date,
         required: [true, "DOB is required"],
-
     },
     gender: {
         type: String,
@@ -36,5 +29,5 @@ const professionaldetailsSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const ProfessionaldetailsModel = mongoose.model("professionaldetails",professionaldetailsSchema)
-module.exports = ProfessionaldetailsModel
+const ProfessionalDetailsModel = mongoose.model("professionalDetails",professionalDetailsSchema)
+module.exports = ProfessionalDetailsModel

@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 
 const companySchema = new mongoose.Schema({
-    
-    
-    _id: {
-        type: String,
-        required: [true, "ID is required"],  
-    },
+
+
+    // _id: {
+    //     type: String,
+    //     required: [true, "ID is required"],  
+    // },
     //  name: {
     //     type: String,
     //     required: [true, "Name is required"], 
@@ -31,32 +31,33 @@ const companySchema = new mongoose.Schema({
 
     company_name: {
         type: String,
-        required: [true, "Name is required"], 
-        unique:true,
+        required: [true, "Company name is required"],
+        unique: true,
         trim: true,
     },
     location: {
         type: String,
-        required: [true, "Location is required"], 
+        required: [true, "Location is required"],
+        maxlength: [500, "Location should not exceed 500 characters"]
     },
-    employer: {
+    admin: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        required: [true, "Company admin is required"], 
+        required:[true, "Admin id required"],
     },
-     contact_details: {
+    contact_details: {
         type: String,
-        required: [true, "Contact details is required"], 
+        required: [true, "Contact is required"],
+        maxlength: [500, "Contact should not exceed 500 characters"]
     },
-    company_image:{
+    company_image: {
         type: String,
         trim: true,
     }
-    
 
-    }, {
-        timestamps: true
-    })
-    
-    const CompanyModel = mongoose.model("company", companySchema)
-    module.exports = CompanyModel
+}, {
+    timestamps: true
+})
+
+const CompanyModel = mongoose.model("company", companySchema)
+module.exports = CompanyModel
